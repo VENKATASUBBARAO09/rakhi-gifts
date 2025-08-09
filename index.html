@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAKHI GIFTS</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom, #ffe5ec, #fff0f5);
+        text-align: center;
+        overflow-x: hidden;
+    }
+    .envelope {
+        position: relative;
+        width: 250px;
+        height: 180px;
+        margin: 80px auto 20px;
+        background: #d6336c;
+        border-radius: 0 0 10px 10px;
+        overflow: hidden;
+        perspective: 1000px;
+    }
+    .flap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: #ad1457;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        transform-origin: top;
+        transform: rotateX(0deg);
+        transition: transform 1s ease-in-out;
+        z-index: 2;
+    }
+    .card {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        height: 130px;
+        background: #fff;
+        border-radius: 8px;
+        z-index: 1;
+        padding-top: 20px;
+        font-size: 16px;
+        color: #d6336c;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .gifts {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+        position: relative;
+        z-index: 3;
+    }
+    .gift {
+        font-size: 60px;
+        cursor: pointer;
+        position: relative;
+        transition: transform 0.3s ease;
+    }
+    .gift:hover {
+        transform: scale(1.2);
+    }
+    .popup {
+        position: absolute;
+        bottom: 110%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fff;
+        padding: 8px 14px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+    }
+    .popup.show {
+        opacity: 1;
+    }
+    .quotes {
+        margin-top: 50px;
+        font-size: 18px;
+        color: #6a1b9a;
+        padding: 0 20px;
+    }
+    .quote {
+        margin: 10px 0;
+    }
+</style>
+</head>
+<body>
+
+<div class="envelope" id="envelope">
+    <div class="flap" id="flap"></div>
+    <div class="card">Happy Raksha Bandhan ❤️<br>For my dear sister Ramya akka</div>
+</div>
+
+<div class="gifts" id="gifts" style="display:none;">
+    <div class="gift" data-message="Sweet chocolates for my sweetest sister Ramya akka 🍫">🍫<div class="popup"></div></div>
+    <div class="gift" data-message="A bracelet to show my love for you Ramya akka 💕">💍<div class="popup"></div></div>
+    <div class="gift" data-message="Flowers for your beautiful smile Ramya akka 🌸">🌸<div class="popup"></div></div>
+    <div class="gift" data-message="A surprise present for my amazing sister Ramya akka 🎁">🎁<div class="popup"></div></div>
+    <div class="gift" data-message="A celebration of our bond Ramya akka 🎉">🎉<div class="popup"></div></div>
+</div>
+
+<div class="quotes">
+    <div class="quote"><b>Thank you Ramya akka</b>, for tying the knot of love every year. Happy Rakhi! ❤️</div>
+    <div class="quote">"Having a sister like you makes every day brighter."</div>
+    <div class="quote">"Sisters are like stars, you may not always see them, but you know they’re always there."</div>
+    <div class="quote">"No matter the distance, the bond between brother and sister remains strong."</div>
+</div>
+
+<script>
+    window.onload = () => {
+        const flap = document.getElementById("flap");
+        const gifts = document.getElementById("gifts");
+        
+        setTimeout(() => {
+            flap.style.transform = "rotateX(180deg)";
+            setTimeout(() => {
+                gifts.style.display = "flex";
+            }, 800);
+        }, 1000);
+    };
+
+    document.querySelectorAll('.gift').forEach(gift => {
+        gift.addEventListener('click', () => {
+            let popup = gift.querySelector('.popup');
+            popup.textContent = gift.getAttribute('data-message');
+            popup.classList.add('show');
+            setTimeout(() => {
+                popup.classList.remove('show');
+            }, 2000);
+        });
+    });
+</script>
+
+</body>
+</html>
